@@ -90,7 +90,7 @@ namespace score
 
             TimeSpan reactionTime = stopwatch.Elapsed;
 
-            lblCountdownText.Text = "Current time: " + reactionTime.ToString(@"s\.fff");
+            lblCountdownText.Text = "Current time: " + reactionTime.ToString(@"s\.ffffff");
 
             databasehandler.AddNewScore(reactionTime, playername);
         }
