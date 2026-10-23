@@ -13,7 +13,11 @@ namespace eindproject
 {
     public partial class Form1 : Form
     {
-        bool admin = true;
+        Auth auth = null;
+
+        string username = "";
+        string password = "";
+        string cpassword = "";
 
         public Form1()
         {
@@ -32,13 +36,32 @@ namespace eindproject
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            tabControl.TabPages.Remove(tbpLogin);
-            tabControl.TabPages.Add(tbpQuiz);
-            if (admin)
+            username = tbxLoginUsername.Text;
+            password = tbxLoginPassword.Text;
+
+            auth = new Auth();
+
+            bool success = auth.Login(username, password);
+
+            if (success)
             {
-                tabControl.TabPages.Add(tbpAdmin);
+                User loggedInUser = auth.GetLoggedInUser();
+
+                username = loggedInUser.GetUsername();
+
+                bool isAdmin = loggedInUser.GetIsAdmin();
+
+                MessageBox.Show("Welcome " + username + "!");
+
+                tabControl.TabPages.Remove(tbpLogin);
+                tabControl.TabPages.Add(tbpQuiz);
+                ResizeFormToFit(tbpQuiz);
+
+                if (isAdmin)
+                {
+                    tabControl.TabPages.Add(tbpAdmin);
+                }
             }
-            ResizeFormToFit(tbpQuiz);
         }
 
         private void btnToRegister_Click(object sender, EventArgs e)
@@ -79,6 +102,30 @@ namespace eindproject
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             ResizeFormToFit(tabControl.SelectedTab);
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            username = tbxRegisterUsername.Text;
+            password = tbxRegisterPassword.Text;
+            cpassword = tbxRegisterCPassword.Text;
+
+            auth = new Auth();
+            bool success = auth.Register(username, password, cpassword);
+
+            if (success)
+            {
+                tabControl.TabPages.Remove(tbpRegister);
+                tabControl.TabPages.Add(tbpLogin);
+                ResizeFormToFit(tbpLogin);
+            }
+        }
+
+        private void btnToLogin_Click(object sender, EventArgs e)
+        {
+            tabControl.TabPages.Remove(tbpRegister);
+            tabControl.TabPages.Add(tbpLogin);
+            ResizeFormToFit(tbpLogin);
         }
     }
 }
