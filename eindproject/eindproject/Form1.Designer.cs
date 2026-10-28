@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tbpLogin = new System.Windows.Forms.TabPage();
+            this.btnTest = new System.Windows.Forms.Button();
             this.tbxLoginPassword = new System.Windows.Forms.TextBox();
             this.tbxLoginUsername = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -54,17 +55,19 @@
             this.cbxShowHighscore = new System.Windows.Forms.CheckBox();
             this.lblQuestion = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
             this.lblTimer = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.btnAnswer4 = new System.Windows.Forms.Button();
-            this.btnAnswer3 = new System.Windows.Forms.Button();
-            this.btnAnswer2 = new System.Windows.Forms.Button();
-            this.btnAnswer1 = new System.Windows.Forms.Button();
+            this.btnAnswerBottomRight = new System.Windows.Forms.Button();
+            this.btnAnswerBottomLeft = new System.Windows.Forms.Button();
+            this.btnAnswerTopRight = new System.Windows.Forms.Button();
+            this.btnAnswerTopLeft = new System.Windows.Forms.Button();
             this.tbpAdmin = new System.Windows.Forms.TabPage();
-            this.tbxCategory = new System.Windows.Forms.TextBox();
+            this.rbtnUndertale = new System.Windows.Forms.RadioButton();
+            this.rbtnDeltarune = new System.Windows.Forms.RadioButton();
+            this.cbxIsAdmin = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnAdminAddAcoount = new System.Windows.Forms.Button();
+            this.btnAdminAddAccount = new System.Windows.Forms.Button();
             this.tbxAdminCPassword = new System.Windows.Forms.TextBox();
             this.tbxAdminPassword = new System.Windows.Forms.TextBox();
             this.tbxAdminUsername = new System.Windows.Forms.TextBox();
@@ -89,8 +92,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tmrQuiz = new System.Windows.Forms.Timer(this.components);
-            this.tmrQuestion = new System.Windows.Forms.Timer(this.components);
-            this.cbxIsAdmin = new System.Windows.Forms.CheckBox();
+            this.lblQuestionTime = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tbpLogin.SuspendLayout();
             this.tbpRegister.SuspendLayout();
@@ -112,9 +114,11 @@
             this.tabControl.Size = new System.Drawing.Size(1100, 568);
             this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
+            this.tabControl.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl_Selecting);
             // 
             // tbpLogin
             // 
+            this.tbpLogin.Controls.Add(this.btnTest);
             this.tbpLogin.Controls.Add(this.tbxLoginPassword);
             this.tbpLogin.Controls.Add(this.tbxLoginUsername);
             this.tbpLogin.Controls.Add(this.label13);
@@ -129,6 +133,16 @@
             this.tbpLogin.TabIndex = 0;
             this.tbpLogin.Text = "Login";
             this.tbpLogin.UseVisualStyleBackColor = true;
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(6, 200);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(205, 32);
+            this.btnTest.TabIndex = 7;
+            this.btnTest.Text = "Test";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // tbxLoginPassword
             // 
@@ -294,18 +308,19 @@
             // 
             // tbpQuiz
             // 
+            this.tbpQuiz.Controls.Add(this.lblQuestionTime);
             this.tbpQuiz.Controls.Add(this.btnSkip);
             this.tbpQuiz.Controls.Add(this.lbxHighscore);
             this.tbpQuiz.Controls.Add(this.cbxShowHighscore);
             this.tbpQuiz.Controls.Add(this.lblQuestion);
             this.tbpQuiz.Controls.Add(this.label19);
-            this.tbpQuiz.Controls.Add(this.label20);
+            this.tbpQuiz.Controls.Add(this.lblScore);
             this.tbpQuiz.Controls.Add(this.lblTimer);
             this.tbpQuiz.Controls.Add(this.label18);
-            this.tbpQuiz.Controls.Add(this.btnAnswer4);
-            this.tbpQuiz.Controls.Add(this.btnAnswer3);
-            this.tbpQuiz.Controls.Add(this.btnAnswer2);
-            this.tbpQuiz.Controls.Add(this.btnAnswer1);
+            this.tbpQuiz.Controls.Add(this.btnAnswerBottomRight);
+            this.tbpQuiz.Controls.Add(this.btnAnswerBottomLeft);
+            this.tbpQuiz.Controls.Add(this.btnAnswerTopRight);
+            this.tbpQuiz.Controls.Add(this.btnAnswerTopLeft);
             this.tbpQuiz.Location = new System.Drawing.Point(4, 25);
             this.tbpQuiz.Name = "tbpQuiz";
             this.tbpQuiz.Padding = new System.Windows.Forms.Padding(3);
@@ -316,12 +331,14 @@
             // 
             // btnSkip
             // 
-            this.btnSkip.Location = new System.Drawing.Point(10, 102);
+            this.btnSkip.Location = new System.Drawing.Point(10, 95);
             this.btnSkip.Name = "btnSkip";
-            this.btnSkip.Size = new System.Drawing.Size(75, 23);
+            this.btnSkip.Size = new System.Drawing.Size(75, 30);
             this.btnSkip.TabIndex = 11;
             this.btnSkip.Text = "Skip";
             this.btnSkip.UseVisualStyleBackColor = true;
+            this.btnSkip.Visible = false;
+            this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
             // 
             // lbxHighscore
             // 
@@ -342,14 +359,15 @@
             this.cbxShowHighscore.TabIndex = 9;
             this.cbxShowHighscore.Text = "Show Highscore";
             this.cbxShowHighscore.UseVisualStyleBackColor = true;
+            this.cbxShowHighscore.CheckedChanged += new System.EventHandler(this.cbxShowHighscore_CheckedChanged);
             // 
             // lblQuestion
             // 
             this.lblQuestion.AutoSize = true;
-            this.lblQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuestion.Location = new System.Drawing.Point(28, 46);
             this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(145, 20);
+            this.lblQuestion.Size = new System.Drawing.Size(137, 18);
             this.lblQuestion.TabIndex = 8;
             this.lblQuestion.Text = "Choose a Category";
             this.lblQuestion.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -364,15 +382,15 @@
             this.label19.TabIndex = 7;
             this.label19.Text = "Score:";
             // 
-            // label20
+            // lblScore
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(725, 15);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(45, 20);
-            this.label20.TabIndex = 6;
-            this.label20.Text = "0000";
+            this.lblScore.AutoSize = true;
+            this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScore.Location = new System.Drawing.Point(725, 15);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(45, 20);
+            this.lblScore.TabIndex = 6;
+            this.lblScore.Text = "0000";
             // 
             // lblTimer
             // 
@@ -394,53 +412,58 @@
             this.label18.TabIndex = 4;
             this.label18.Text = "Time:";
             // 
-            // btnAnswer4
+            // btnAnswerBottomRight
             // 
-            this.btnAnswer4.Enabled = false;
-            this.btnAnswer4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswer4.Location = new System.Drawing.Point(397, 272);
-            this.btnAnswer4.Name = "btnAnswer4";
-            this.btnAnswer4.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswer4.TabIndex = 3;
-            this.btnAnswer4.Text = "button5";
-            this.btnAnswer4.UseVisualStyleBackColor = true;
+            this.btnAnswerBottomRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerBottomRight.Location = new System.Drawing.Point(397, 272);
+            this.btnAnswerBottomRight.Name = "btnAnswerBottomRight";
+            this.btnAnswerBottomRight.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerBottomRight.TabIndex = 3;
+            this.btnAnswerBottomRight.Text = "General";
+            this.btnAnswerBottomRight.UseVisualStyleBackColor = true;
+            this.btnAnswerBottomRight.Visible = false;
+            this.btnAnswerBottomRight.Click += new System.EventHandler(this.btnAnswerBottomRight_Click);
             // 
-            // btnAnswer3
+            // btnAnswerBottomLeft
             // 
-            this.btnAnswer3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswer3.Location = new System.Drawing.Point(6, 272);
-            this.btnAnswer3.Name = "btnAnswer3";
-            this.btnAnswer3.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswer3.TabIndex = 2;
-            this.btnAnswer3.Text = "General";
-            this.btnAnswer3.UseVisualStyleBackColor = true;
+            this.btnAnswerBottomLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerBottomLeft.Location = new System.Drawing.Point(6, 272);
+            this.btnAnswerBottomLeft.Name = "btnAnswerBottomLeft";
+            this.btnAnswerBottomLeft.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerBottomLeft.TabIndex = 2;
+            this.btnAnswerBottomLeft.Text = "General";
+            this.btnAnswerBottomLeft.UseVisualStyleBackColor = true;
+            this.btnAnswerBottomLeft.Click += new System.EventHandler(this.btnAnswerBottomLeft_Click);
             // 
-            // btnAnswer2
+            // btnAnswerTopRight
             // 
-            this.btnAnswer2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswer2.Location = new System.Drawing.Point(397, 131);
-            this.btnAnswer2.Name = "btnAnswer2";
-            this.btnAnswer2.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswer2.TabIndex = 1;
-            this.btnAnswer2.Text = "Undertale";
-            this.btnAnswer2.UseVisualStyleBackColor = true;
+            this.btnAnswerTopRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerTopRight.Location = new System.Drawing.Point(397, 131);
+            this.btnAnswerTopRight.Name = "btnAnswerTopRight";
+            this.btnAnswerTopRight.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerTopRight.TabIndex = 1;
+            this.btnAnswerTopRight.Text = "Undertale";
+            this.btnAnswerTopRight.UseVisualStyleBackColor = true;
+            this.btnAnswerTopRight.Click += new System.EventHandler(this.btnAnswerTopRight_Click);
             // 
-            // btnAnswer1
+            // btnAnswerTopLeft
             // 
-            this.btnAnswer1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswer1.Location = new System.Drawing.Point(6, 131);
-            this.btnAnswer1.Name = "btnAnswer1";
-            this.btnAnswer1.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswer1.TabIndex = 0;
-            this.btnAnswer1.Text = "Deltarune";
-            this.btnAnswer1.UseVisualStyleBackColor = true;
+            this.btnAnswerTopLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerTopLeft.Location = new System.Drawing.Point(6, 131);
+            this.btnAnswerTopLeft.Name = "btnAnswerTopLeft";
+            this.btnAnswerTopLeft.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerTopLeft.TabIndex = 0;
+            this.btnAnswerTopLeft.Text = "Deltarune";
+            this.btnAnswerTopLeft.UseVisualStyleBackColor = true;
+            this.btnAnswerTopLeft.Click += new System.EventHandler(this.btnAnswerTopLeft_Click);
             // 
             // tbpAdmin
             // 
+            this.tbpAdmin.Controls.Add(this.rbtnUndertale);
+            this.tbpAdmin.Controls.Add(this.rbtnDeltarune);
             this.tbpAdmin.Controls.Add(this.cbxIsAdmin);
-            this.tbpAdmin.Controls.Add(this.tbxCategory);
             this.tbpAdmin.Controls.Add(this.label10);
-            this.tbpAdmin.Controls.Add(this.btnAdminAddAcoount);
+            this.tbpAdmin.Controls.Add(this.btnAdminAddAccount);
             this.tbpAdmin.Controls.Add(this.tbxAdminCPassword);
             this.tbpAdmin.Controls.Add(this.tbxAdminPassword);
             this.tbpAdmin.Controls.Add(this.tbxAdminUsername);
@@ -472,12 +495,39 @@
             this.tbpAdmin.Text = "Admin Panel";
             this.tbpAdmin.UseVisualStyleBackColor = true;
             // 
-            // tbxCategory
+            // rbtnUndertale
             // 
-            this.tbxCategory.Location = new System.Drawing.Point(108, 34);
-            this.tbxCategory.Name = "tbxCategory";
-            this.tbxCategory.Size = new System.Drawing.Size(100, 22);
-            this.tbxCategory.TabIndex = 25;
+            this.rbtnUndertale.AutoSize = true;
+            this.rbtnUndertale.Location = new System.Drawing.Point(197, 36);
+            this.rbtnUndertale.Name = "rbtnUndertale";
+            this.rbtnUndertale.Size = new System.Drawing.Size(84, 20);
+            this.rbtnUndertale.TabIndex = 28;
+            this.rbtnUndertale.TabStop = true;
+            this.rbtnUndertale.Text = "Undertale";
+            this.rbtnUndertale.UseVisualStyleBackColor = true;
+            // 
+            // rbtnDeltarune
+            // 
+            this.rbtnDeltarune.AutoSize = true;
+            this.rbtnDeltarune.Checked = true;
+            this.rbtnDeltarune.Location = new System.Drawing.Point(108, 36);
+            this.rbtnDeltarune.Name = "rbtnDeltarune";
+            this.rbtnDeltarune.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.rbtnDeltarune.Size = new System.Drawing.Size(83, 20);
+            this.rbtnDeltarune.TabIndex = 27;
+            this.rbtnDeltarune.TabStop = true;
+            this.rbtnDeltarune.Text = "Deltarune";
+            this.rbtnDeltarune.UseVisualStyleBackColor = true;
+            // 
+            // cbxIsAdmin
+            // 
+            this.cbxIsAdmin.AutoSize = true;
+            this.cbxIsAdmin.Location = new System.Drawing.Point(526, 114);
+            this.cbxIsAdmin.Name = "cbxIsAdmin";
+            this.cbxIsAdmin.Size = new System.Drawing.Size(71, 20);
+            this.cbxIsAdmin.TabIndex = 26;
+            this.cbxIsAdmin.Text = "Admin?";
+            this.cbxIsAdmin.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -488,32 +538,33 @@
             this.label10.TabIndex = 24;
             this.label10.Text = "Category:";
             // 
-            // btnAdminAddAcoount
+            // btnAdminAddAccount
             // 
-            this.btnAdminAddAcoount.Location = new System.Drawing.Point(409, 140);
-            this.btnAdminAddAcoount.Name = "btnAdminAddAcoount";
-            this.btnAdminAddAcoount.Size = new System.Drawing.Size(100, 23);
-            this.btnAdminAddAcoount.TabIndex = 23;
-            this.btnAdminAddAcoount.Text = "Add Account";
-            this.btnAdminAddAcoount.UseVisualStyleBackColor = true;
+            this.btnAdminAddAccount.Location = new System.Drawing.Point(526, 140);
+            this.btnAdminAddAccount.Name = "btnAdminAddAccount";
+            this.btnAdminAddAccount.Size = new System.Drawing.Size(100, 23);
+            this.btnAdminAddAccount.TabIndex = 23;
+            this.btnAdminAddAccount.Text = "Add Account";
+            this.btnAdminAddAccount.UseVisualStyleBackColor = true;
+            this.btnAdminAddAccount.Click += new System.EventHandler(this.btnAdminAddAccount_Click);
             // 
             // tbxAdminCPassword
             // 
-            this.tbxAdminCPassword.Location = new System.Drawing.Point(409, 87);
+            this.tbxAdminCPassword.Location = new System.Drawing.Point(526, 87);
             this.tbxAdminCPassword.Name = "tbxAdminCPassword";
             this.tbxAdminCPassword.Size = new System.Drawing.Size(100, 22);
             this.tbxAdminCPassword.TabIndex = 22;
             // 
             // tbxAdminPassword
             // 
-            this.tbxAdminPassword.Location = new System.Drawing.Point(409, 59);
+            this.tbxAdminPassword.Location = new System.Drawing.Point(526, 59);
             this.tbxAdminPassword.Name = "tbxAdminPassword";
             this.tbxAdminPassword.Size = new System.Drawing.Size(100, 22);
             this.tbxAdminPassword.TabIndex = 21;
             // 
             // tbxAdminUsername
             // 
-            this.tbxAdminUsername.Location = new System.Drawing.Point(409, 31);
+            this.tbxAdminUsername.Location = new System.Drawing.Point(526, 31);
             this.tbxAdminUsername.Name = "tbxAdminUsername";
             this.tbxAdminUsername.Size = new System.Drawing.Size(100, 22);
             this.tbxAdminUsername.TabIndex = 20;
@@ -521,7 +572,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(287, 87);
+            this.label7.Location = new System.Drawing.Point(404, 87);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(118, 16);
             this.label7.TabIndex = 19;
@@ -530,7 +581,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(335, 59);
+            this.label8.Location = new System.Drawing.Point(452, 59);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 16);
             this.label8.TabIndex = 18;
@@ -539,7 +590,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(332, 31);
+            this.label9.Location = new System.Drawing.Point(449, 31);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(73, 16);
             this.label9.TabIndex = 17;
@@ -549,7 +600,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(378, 2);
+            this.label6.Location = new System.Drawing.Point(495, 2);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 25);
             this.label6.TabIndex = 16;
@@ -557,23 +608,25 @@
             // 
             // btnRemoveAccount
             // 
-            this.btnRemoveAccount.Location = new System.Drawing.Point(434, 507);
+            this.btnRemoveAccount.Location = new System.Drawing.Point(551, 507);
             this.btnRemoveAccount.Name = "btnRemoveAccount";
             this.btnRemoveAccount.Size = new System.Drawing.Size(75, 23);
             this.btnRemoveAccount.TabIndex = 15;
             this.btnRemoveAccount.Text = "Remove";
             this.btnRemoveAccount.UseVisualStyleBackColor = true;
+            this.btnRemoveAccount.Click += new System.EventHandler(this.btnRemoveAccount_Click);
             // 
             // dgvAccounts
             // 
             this.dgvAccounts.AllowUserToAddRows = false;
             this.dgvAccounts.AllowUserToDeleteRows = false;
             this.dgvAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAccounts.Location = new System.Drawing.Point(515, 3);
+            this.dgvAccounts.Location = new System.Drawing.Point(632, 3);
             this.dgvAccounts.Name = "dgvAccounts";
             this.dgvAccounts.ReadOnly = true;
             this.dgvAccounts.RowTemplate.Height = 24;
-            this.dgvAccounts.Size = new System.Drawing.Size(271, 527);
+            this.dgvAccounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAccounts.Size = new System.Drawing.Size(320, 527);
             this.dgvAccounts.TabIndex = 14;
             // 
             // btnAddQuestion
@@ -584,24 +637,27 @@
             this.btnAddQuestion.TabIndex = 13;
             this.btnAddQuestion.Text = "Add";
             this.btnAddQuestion.UseVisualStyleBackColor = true;
+            this.btnAddQuestion.Click += new System.EventHandler(this.btnAddQuestion_Click);
             // 
             // btnEditQuestion
             // 
-            this.btnEditQuestion.Location = new System.Drawing.Point(295, 507);
+            this.btnEditQuestion.Location = new System.Drawing.Point(412, 507);
             this.btnEditQuestion.Name = "btnEditQuestion";
             this.btnEditQuestion.Size = new System.Drawing.Size(75, 23);
             this.btnEditQuestion.TabIndex = 12;
             this.btnEditQuestion.Text = "Edit";
             this.btnEditQuestion.UseVisualStyleBackColor = true;
+            this.btnEditQuestion.Click += new System.EventHandler(this.btnEditQuestion_Click);
             // 
             // btnRemoveQuestion
             // 
-            this.btnRemoveQuestion.Location = new System.Drawing.Point(295, 478);
+            this.btnRemoveQuestion.Location = new System.Drawing.Point(412, 478);
             this.btnRemoveQuestion.Name = "btnRemoveQuestion";
             this.btnRemoveQuestion.Size = new System.Drawing.Size(75, 23);
             this.btnRemoveQuestion.TabIndex = 11;
             this.btnRemoveQuestion.Text = "Remove";
             this.btnRemoveQuestion.UseVisualStyleBackColor = true;
+            this.btnRemoveQuestion.Click += new System.EventHandler(this.btnRemoveQuestion_Click);
             // 
             // dgvQuestions
             // 
@@ -612,7 +668,8 @@
             this.dgvQuestions.Name = "dgvQuestions";
             this.dgvQuestions.ReadOnly = true;
             this.dgvQuestions.RowTemplate.Height = 24;
-            this.dgvQuestions.Size = new System.Drawing.Size(283, 354);
+            this.dgvQuestions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvQuestions.Size = new System.Drawing.Size(400, 354);
             this.dgvQuestions.TabIndex = 10;
             // 
             // tbxWrongAnswer3
@@ -698,20 +755,17 @@
             // tmrQuiz
             // 
             this.tmrQuiz.Interval = 1000;
+            this.tmrQuiz.Tick += new System.EventHandler(this.tmrQuiz_Tick);
             // 
-            // tmrQuestion
+            // lblQuestionTime
             // 
-            this.tmrQuestion.Interval = 1000;
-            // 
-            // cbxIsAdmin
-            // 
-            this.cbxIsAdmin.AutoSize = true;
-            this.cbxIsAdmin.Location = new System.Drawing.Point(409, 114);
-            this.cbxIsAdmin.Name = "cbxIsAdmin";
-            this.cbxIsAdmin.Size = new System.Drawing.Size(71, 20);
-            this.cbxIsAdmin.TabIndex = 26;
-            this.cbxIsAdmin.Text = "Admin?";
-            this.cbxIsAdmin.UseVisualStyleBackColor = true;
+            this.lblQuestionTime.AutoSize = true;
+            this.lblQuestionTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuestionTime.Location = new System.Drawing.Point(92, 15);
+            this.lblQuestionTime.Name = "lblQuestionTime";
+            this.lblQuestionTime.Size = new System.Drawing.Size(18, 20);
+            this.lblQuestionTime.TabIndex = 12;
+            this.lblQuestionTime.Text = "5";
             // 
             // Form1
             // 
@@ -755,7 +809,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnAdminAddAcoount;
+        private System.Windows.Forms.Button btnAdminAddAccount;
         private System.Windows.Forms.TextBox tbxAdminCPassword;
         private System.Windows.Forms.TextBox tbxAdminPassword;
         private System.Windows.Forms.TextBox tbxAdminUsername;
@@ -765,7 +819,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnRemoveAccount;
         private System.Windows.Forms.DataGridView dgvAccounts;
-        private System.Windows.Forms.TextBox tbxCategory;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TabPage tbpQuiz;
         private System.Windows.Forms.Button btnLogin;
@@ -776,7 +829,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnAnswer1;
+        private System.Windows.Forms.Button btnAnswerTopLeft;
         private System.Windows.Forms.TextBox tbxRegisterPassword;
         private System.Windows.Forms.TextBox tbxRegisterUsername;
         private System.Windows.Forms.Label label17;
@@ -786,20 +839,23 @@
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.TextBox tbxRegisterCPassword;
         private System.Windows.Forms.Button btnToLogin;
-        private System.Windows.Forms.Button btnAnswer4;
-        private System.Windows.Forms.Button btnAnswer3;
-        private System.Windows.Forms.Button btnAnswer2;
+        private System.Windows.Forms.Button btnAnswerBottomRight;
+        private System.Windows.Forms.Button btnAnswerBottomLeft;
+        private System.Windows.Forms.Button btnAnswerTopRight;
         private System.Windows.Forms.Timer tmrQuiz;
-        private System.Windows.Forms.Timer tmrQuestion;
         private System.Windows.Forms.Label lblQuestion;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Label lblTimer;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox cbxShowHighscore;
         private System.Windows.Forms.ListBox lbxHighscore;
         private System.Windows.Forms.Button btnSkip;
         private System.Windows.Forms.CheckBox cbxIsAdmin;
+        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.RadioButton rbtnUndertale;
+        private System.Windows.Forms.RadioButton rbtnDeltarune;
+        private System.Windows.Forms.Label lblQuestionTime;
     }
 }
 

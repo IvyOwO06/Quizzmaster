@@ -18,7 +18,7 @@ namespace eindproject
 
         string hashedPassword = "";
 
-        public bool Register(string username, string password, string cpassword)
+        public bool Register(string username, string password, string cpassword, int isAdmin)
         {
             databaseHandler = new DatabaseHandler();
             dataTable = new DataTable();
@@ -44,7 +44,7 @@ namespace eindproject
                 {
                     hashedPassword = PasswordHasher(password);
 
-                    string query = "INSERT INTO users (username, password) VALUES ('" + username + "', '" + hashedPassword + "')";
+                    string query = "INSERT INTO users (username, password, isAdmin) VALUES ('" + username + "', '" + hashedPassword + "', '" + isAdmin + "')";
 
                     databaseHandler.ExecuteQuery(query);
 
@@ -77,7 +77,7 @@ namespace eindproject
             databaseHandler.FillDataTable("SELECT * FROM users WHERE username ='" + username + "'");
             dataTable = databaseHandler.GetDataTable();
 
-            if (dataTable.Rows.Count < 0)
+            if (dataTable.Rows.Count <= 0)
             {
                 MessageBox.Show("Username or password is invalid", "Error");
                 return false;
@@ -94,9 +94,9 @@ namespace eindproject
             {
                 string storedUsername = dataTable.Rows[0]["username"].ToString();
                 bool isAdmin = Convert.ToInt32(dataTable.Rows[0]["isAdmin"]) == 1;
-                user = new User(storedUsername, isAdmin);
+                int userId = Convert.ToInt32(dataTable.Rows[0]["userId"]);
+                user = new User(storedUsername, isAdmin, userId);
 
-                MessageBox.Show("Login was successful", "Success");
                 return true;
             }
             else if (result == PasswordVerificationResult.SuccessRehashNeeded)
@@ -107,7 +107,8 @@ namespace eindproject
 
                 string storedUsername = dataTable.Rows[0]["username"].ToString();
                 bool isAdmin = Convert.ToInt32(dataTable.Rows[0]["isAdmin"]) == 1;
-                user = new User(storedUsername, isAdmin);
+                int userId = Convert.ToInt32(dataTable.Rows[0]["userId"]);
+                user = new User(storedUsername, isAdmin, userId);
 
                 MessageBox.Show("Login was successful", "Success");
                 return true;
