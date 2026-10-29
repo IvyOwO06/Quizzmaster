@@ -135,7 +135,7 @@
             this.tbpLogin.Location = new System.Drawing.Point(4, 25);
             this.tbpLogin.Name = "tbpLogin";
             this.tbpLogin.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpLogin.Size = new System.Drawing.Size(1262, 635);
+            this.tbpLogin.Size = new System.Drawing.Size(1158, 635);
             this.tbpLogin.TabIndex = 0;
             this.tbpLogin.Text = "Login";
             this.tbpLogin.UseVisualStyleBackColor = true;
@@ -468,7 +468,7 @@
             this.tbpAdmin.Location = new System.Drawing.Point(4, 25);
             this.tbpAdmin.Name = "tbpAdmin";
             this.tbpAdmin.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpAdmin.Size = new System.Drawing.Size(1262, 635);
+            this.tbpAdmin.Size = new System.Drawing.Size(1158, 635);
             this.tbpAdmin.TabIndex = 3;
             this.tbpAdmin.Text = "Admin Panel";
             this.tbpAdmin.UseVisualStyleBackColor = true;
@@ -778,9 +778,9 @@
             // pbxRalsei
             // 
             this.pbxRalsei.Image = global::eindproject.Properties.Resources.undertale_text_box_ralsei_neutral1;
-            this.pbxRalsei.Location = new System.Drawing.Point(6, 38);
+            this.pbxRalsei.Location = new System.Drawing.Point(-4, 38);
             this.pbxRalsei.Name = "pbxRalsei";
-            this.pbxRalsei.Size = new System.Drawing.Size(840, 277);
+            this.pbxRalsei.Size = new System.Drawing.Size(856, 277);
             this.pbxRalsei.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxRalsei.TabIndex = 13;
             this.pbxRalsei.TabStop = false;

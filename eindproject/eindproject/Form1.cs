@@ -1,10 +1,10 @@
-﻿using Org.BouncyCastle.Bcpg;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Drawing;
+using System.Media;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -21,6 +21,7 @@ namespace eindproject
         Random rng = null;
         List<Question> questionList = new List<Question>();
         Question questions = null;
+        private AudioManager audioManager = new AudioManager();
 
         string username = "";
         string password = "";
@@ -188,7 +189,7 @@ namespace eindproject
 
         private void btnRemoveAccount_Click(object sender, EventArgs e)
         {
-            if (dgvAccounts.SelectedRows.Count == 0)
+            if (dgvAccounts.SelectedRows.Count <= 0)
             {
                 MessageBox.Show("Please select an account to remove.");
                 return;
@@ -449,9 +450,13 @@ namespace eindproject
             NextQuestion();
             btnAnswerBottomRight.Visible = true;
             btnSkip.Visible = true;
+            btnSkip.Enabled = true;
             tmrQuiz.Start();
             cbxShowHighscore.Enabled = false;
             canChangeTab = false;
+
+            audioManager.PlayMusic("QUIZ.wav");
+
         }
 
         private void ShuffleQuestions()
@@ -506,12 +511,14 @@ namespace eindproject
                 tmrQuiz.Stop();
                 StopQuiz();
                 MessageBox.Show("Time's up!", "Loser");
+                
                 return;
             }
             if (stopwatch == 10)
             {
                 this.BackColor = Color.Red;
                 tbpQuiz.BackColor = Color.Red;
+                audioManager.SetMusicSpeed(1.5);
             }
             if (stopwatchQuestions == 0)
             {
@@ -525,9 +532,14 @@ namespace eindproject
         {
             databaseHandler = new DatabaseHandler();
             string query = "INSERT INTO score (score, userId, username) VALUES ('" + score + "' ,'" + userId + "', '" + username + "')";
+            audioManager.StopMusic();
             databaseHandler.ExecuteQuery(query);
             score = 0;
             lblScore.Text = score.ToString();
+            stopwatch = 60;
+            stopwatchQuestions = 5;
+            lblTimer.Text = stopwatch.ToString();
+            lblQuestionTime.Text = stopwatchQuestions.ToString();
             choosingCategory = true;
             btnAnswerTopLeft.Text = "Deltarune";
             btnAnswerTopRight.Text = "Undertale";
@@ -567,7 +579,8 @@ namespace eindproject
         private void Correct()
         {
             score += 1000;
-            Bitmap bm = new Bitmap("C:\\Quizzmaster\\eindproject\\eindproject\\Resources\\undertale_text_box_ralsei_correct.png");
+            Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_ralsei_correct);
+            audioManager.PlaySound("ding.wav");
             pbxRalsei.Image = bm;
             lblAsterisk.Visible = true;
             lblWrongOrCorrect.Text = "Correct";
@@ -577,7 +590,8 @@ namespace eindproject
         private void Wrong()
         {
             score -= 500;
-            Bitmap bm = new Bitmap("C:\\Quizzmaster\\eindproject\\eindproject\\Resources\\undertale_text_box_ralsei_wrong.png");
+            Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_ralsei_wrong);
+            audioManager.PlaySound("buzzer.wav");
             pbxRalsei.Image = bm;
             lblAsterisk.Visible = true;
             lblWrongOrCorrect.Text = "WRONG";

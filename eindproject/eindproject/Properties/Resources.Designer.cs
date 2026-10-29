@@ -61,6 +61,33 @@ namespace eindproject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream buzzer {
+            get {
+                return ResourceManager.GetStream("buzzer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ding {
+            get {
+                return ResourceManager.GetStream("ding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream QUIZ {
+            get {
+                return ResourceManager.GetStream("QUIZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap undertale_text_box {
@@ -76,16 +103,6 @@ namespace eindproject.Properties {
         internal static System.Drawing.Bitmap undertale_text_box_ralsei_correct {
             get {
                 object obj = ResourceManager.GetObject("undertale_text_box_ralsei_correct", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap undertale_text_box_ralsei_neutral {
-            get {
-                object obj = ResourceManager.GetObject("undertale_text_box_ralsei_neutral", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
