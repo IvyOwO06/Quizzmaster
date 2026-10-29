@@ -358,11 +358,11 @@ namespace eindproject
             {
                 if (btnAnswerTopLeft.Text == questionList[currentQuestionIndex].GetAnswer())
                 {
-                    score += 1000;
+                    Correct();
                 }
                 else
                 {
-                    score -= 500;
+                    Wrong();
                 }
                 NextQuestion();
             }
@@ -378,11 +378,11 @@ namespace eindproject
             {
                 if (btnAnswerTopRight.Text == questionList[currentQuestionIndex].GetAnswer())
                 {
-                    score += 1000;
+                    Correct();
                 }
                 else
                 {
-                    score -= 500;
+                    Wrong();
                 }
                 NextQuestion();
             }
@@ -399,11 +399,11 @@ namespace eindproject
             {
                 if (btnAnswerBottomLeft.Text == questionList[currentQuestionIndex].GetAnswer())
                 {
-                    score += 1000;
+                    Correct();
                 }
                 else
                 {
-                    score -= 500;
+                    Wrong();
                 }
                 NextQuestion();
             }
@@ -414,11 +414,11 @@ namespace eindproject
         {
             if (btnAnswerBottomRight.Text == questionList[currentQuestionIndex].GetAnswer())
             {
-                score += 1000;
+                Correct();
             }
             else
             {
-                score -= 500;
+                Wrong();
             }
             NextQuestion();
         }
@@ -562,6 +562,26 @@ namespace eindproject
             {
                 e.Cancel = true;
             }
+        }
+
+        private void Correct()
+        {
+            score += 1000;
+            Bitmap bm = new Bitmap("C:\\Quizzmaster\\eindproject\\eindproject\\Resources\\undertale_text_box_ralsei_correct.png");
+            pbxRalsei.Image = bm;
+            lblAsterisk.Visible = true;
+            lblWrongOrCorrect.Text = "Correct";
+            lblWrongOrCorrect.Visible = true;
+        }
+
+        private void Wrong()
+        {
+            score -= 500;
+            Bitmap bm = new Bitmap("C:\\Quizzmaster\\eindproject\\eindproject\\Resources\\undertale_text_box_ralsei_wrong.png");
+            pbxRalsei.Image = bm;
+            lblAsterisk.Visible = true;
+            lblWrongOrCorrect.Text = "WRONG";
+            lblWrongOrCorrect.Visible = true;
         }
     }
 }

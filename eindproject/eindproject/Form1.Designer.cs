@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tbpLogin = new System.Windows.Forms.TabPage();
             this.btnTest = new System.Windows.Forms.Button();
@@ -50,6 +51,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.tbpQuiz = new System.Windows.Forms.TabPage();
+            this.lblQuestionTime = new System.Windows.Forms.Label();
             this.btnSkip = new System.Windows.Forms.Button();
             this.lbxHighscore = new System.Windows.Forms.ListBox();
             this.cbxShowHighscore = new System.Windows.Forms.CheckBox();
@@ -58,10 +60,6 @@
             this.lblScore = new System.Windows.Forms.Label();
             this.lblTimer = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.btnAnswerBottomRight = new System.Windows.Forms.Button();
-            this.btnAnswerBottomLeft = new System.Windows.Forms.Button();
-            this.btnAnswerTopRight = new System.Windows.Forms.Button();
-            this.btnAnswerTopLeft = new System.Windows.Forms.Button();
             this.tbpAdmin = new System.Windows.Forms.TabPage();
             this.rbtnUndertale = new System.Windows.Forms.RadioButton();
             this.rbtnDeltarune = new System.Windows.Forms.RadioButton();
@@ -92,7 +90,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tmrQuiz = new System.Windows.Forms.Timer(this.components);
-            this.lblQuestionTime = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.lblAsterisk = new System.Windows.Forms.Label();
+            this.lblWrongOrCorrect = new System.Windows.Forms.Label();
+            this.pbxRalsei = new System.Windows.Forms.PictureBox();
+            this.btnAnswerBottomRight = new System.Windows.Forms.Button();
+            this.btnAnswerBottomLeft = new System.Windows.Forms.Button();
+            this.btnAnswerTopRight = new System.Windows.Forms.Button();
+            this.btnAnswerTopLeft = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tbpLogin.SuspendLayout();
             this.tbpRegister.SuspendLayout();
@@ -100,6 +105,7 @@
             this.tbpAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccounts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuestions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxRalsei)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -111,7 +117,7 @@
             this.tabControl.Location = new System.Drawing.Point(2, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1100, 568);
+            this.tabControl.Size = new System.Drawing.Size(1166, 664);
             this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             this.tabControl.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl_Selecting);
@@ -129,7 +135,7 @@
             this.tbpLogin.Location = new System.Drawing.Point(4, 25);
             this.tbpLogin.Name = "tbpLogin";
             this.tbpLogin.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpLogin.Size = new System.Drawing.Size(1092, 539);
+            this.tbpLogin.Size = new System.Drawing.Size(1262, 635);
             this.tbpLogin.TabIndex = 0;
             this.tbpLogin.Text = "Login";
             this.tbpLogin.UseVisualStyleBackColor = true;
@@ -221,7 +227,7 @@
             this.tbpRegister.Location = new System.Drawing.Point(4, 25);
             this.tbpRegister.Name = "tbpRegister";
             this.tbpRegister.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpRegister.Size = new System.Drawing.Size(1092, 539);
+            this.tbpRegister.Size = new System.Drawing.Size(1262, 635);
             this.tbpRegister.TabIndex = 1;
             this.tbpRegister.Text = "Register";
             this.tbpRegister.UseVisualStyleBackColor = true;
@@ -308,11 +314,15 @@
             // 
             // tbpQuiz
             // 
-            this.tbpQuiz.Controls.Add(this.lblQuestionTime);
+            this.tbpQuiz.Controls.Add(this.lblAsterisk);
+            this.tbpQuiz.Controls.Add(this.lblWrongOrCorrect);
+            this.tbpQuiz.Controls.Add(this.label20);
             this.tbpQuiz.Controls.Add(this.btnSkip);
+            this.tbpQuiz.Controls.Add(this.lblQuestion);
+            this.tbpQuiz.Controls.Add(this.pbxRalsei);
+            this.tbpQuiz.Controls.Add(this.lblQuestionTime);
             this.tbpQuiz.Controls.Add(this.lbxHighscore);
             this.tbpQuiz.Controls.Add(this.cbxShowHighscore);
-            this.tbpQuiz.Controls.Add(this.lblQuestion);
             this.tbpQuiz.Controls.Add(this.label19);
             this.tbpQuiz.Controls.Add(this.lblScore);
             this.tbpQuiz.Controls.Add(this.lblTimer);
@@ -324,14 +334,24 @@
             this.tbpQuiz.Location = new System.Drawing.Point(4, 25);
             this.tbpQuiz.Name = "tbpQuiz";
             this.tbpQuiz.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpQuiz.Size = new System.Drawing.Size(1092, 539);
+            this.tbpQuiz.Size = new System.Drawing.Size(1158, 635);
             this.tbpQuiz.TabIndex = 2;
             this.tbpQuiz.Text = "Quiz";
             this.tbpQuiz.UseVisualStyleBackColor = true;
             // 
+            // lblQuestionTime
+            // 
+            this.lblQuestionTime.AutoSize = true;
+            this.lblQuestionTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuestionTime.Location = new System.Drawing.Point(92, 15);
+            this.lblQuestionTime.Name = "lblQuestionTime";
+            this.lblQuestionTime.Size = new System.Drawing.Size(18, 20);
+            this.lblQuestionTime.TabIndex = 12;
+            this.lblQuestionTime.Text = "5";
+            // 
             // btnSkip
             // 
-            this.btnSkip.Location = new System.Drawing.Point(10, 95);
+            this.btnSkip.Location = new System.Drawing.Point(11, 321);
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(75, 30);
             this.btnSkip.TabIndex = 11;
@@ -344,16 +364,16 @@
             // 
             this.lbxHighscore.FormattingEnabled = true;
             this.lbxHighscore.ItemHeight = 16;
-            this.lbxHighscore.Location = new System.Drawing.Point(789, 7);
+            this.lbxHighscore.Location = new System.Drawing.Point(852, 15);
             this.lbxHighscore.Name = "lbxHighscore";
-            this.lbxHighscore.Size = new System.Drawing.Size(293, 404);
+            this.lbxHighscore.Size = new System.Drawing.Size(293, 612);
             this.lbxHighscore.TabIndex = 10;
             this.lbxHighscore.Visible = false;
             // 
             // cbxShowHighscore
             // 
             this.cbxShowHighscore.AutoSize = true;
-            this.cbxShowHighscore.Location = new System.Drawing.Point(658, 105);
+            this.cbxShowHighscore.Location = new System.Drawing.Point(722, 327);
             this.cbxShowHighscore.Name = "cbxShowHighscore";
             this.cbxShowHighscore.Size = new System.Drawing.Size(124, 20);
             this.cbxShowHighscore.TabIndex = 9;
@@ -364,19 +384,22 @@
             // lblQuestion
             // 
             this.lblQuestion.AutoSize = true;
-            this.lblQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuestion.Location = new System.Drawing.Point(28, 46);
+            this.lblQuestion.BackColor = System.Drawing.Color.Black;
+            this.lblQuestion.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuestion.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblQuestion.Location = new System.Drawing.Point(229, 96);
+            this.lblQuestion.MaximumSize = new System.Drawing.Size(575, 0);
             this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(137, 18);
+            this.lblQuestion.Size = new System.Drawing.Size(362, 21);
             this.lblQuestion.TabIndex = 8;
-            this.lblQuestion.Text = "Choose a Category";
-            this.lblQuestion.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblQuestion.Text = "Welcome lightner, please choose a category";
+            this.lblQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(654, 15);
+            this.label19.Location = new System.Drawing.Point(696, 15);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(55, 20);
             this.label19.TabIndex = 7;
@@ -386,7 +409,7 @@
             // 
             this.lblScore.AutoSize = true;
             this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScore.Location = new System.Drawing.Point(725, 15);
+            this.lblScore.Location = new System.Drawing.Point(767, 15);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(45, 20);
             this.lblScore.TabIndex = 6;
@@ -411,51 +434,6 @@
             this.label18.Size = new System.Drawing.Size(47, 20);
             this.label18.TabIndex = 4;
             this.label18.Text = "Time:";
-            // 
-            // btnAnswerBottomRight
-            // 
-            this.btnAnswerBottomRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswerBottomRight.Location = new System.Drawing.Point(397, 272);
-            this.btnAnswerBottomRight.Name = "btnAnswerBottomRight";
-            this.btnAnswerBottomRight.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswerBottomRight.TabIndex = 3;
-            this.btnAnswerBottomRight.Text = "General";
-            this.btnAnswerBottomRight.UseVisualStyleBackColor = true;
-            this.btnAnswerBottomRight.Visible = false;
-            this.btnAnswerBottomRight.Click += new System.EventHandler(this.btnAnswerBottomRight_Click);
-            // 
-            // btnAnswerBottomLeft
-            // 
-            this.btnAnswerBottomLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswerBottomLeft.Location = new System.Drawing.Point(6, 272);
-            this.btnAnswerBottomLeft.Name = "btnAnswerBottomLeft";
-            this.btnAnswerBottomLeft.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswerBottomLeft.TabIndex = 2;
-            this.btnAnswerBottomLeft.Text = "General";
-            this.btnAnswerBottomLeft.UseVisualStyleBackColor = true;
-            this.btnAnswerBottomLeft.Click += new System.EventHandler(this.btnAnswerBottomLeft_Click);
-            // 
-            // btnAnswerTopRight
-            // 
-            this.btnAnswerTopRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswerTopRight.Location = new System.Drawing.Point(397, 131);
-            this.btnAnswerTopRight.Name = "btnAnswerTopRight";
-            this.btnAnswerTopRight.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswerTopRight.TabIndex = 1;
-            this.btnAnswerTopRight.Text = "Undertale";
-            this.btnAnswerTopRight.UseVisualStyleBackColor = true;
-            this.btnAnswerTopRight.Click += new System.EventHandler(this.btnAnswerTopRight_Click);
-            // 
-            // btnAnswerTopLeft
-            // 
-            this.btnAnswerTopLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswerTopLeft.Location = new System.Drawing.Point(6, 131);
-            this.btnAnswerTopLeft.Name = "btnAnswerTopLeft";
-            this.btnAnswerTopLeft.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswerTopLeft.TabIndex = 0;
-            this.btnAnswerTopLeft.Text = "Deltarune";
-            this.btnAnswerTopLeft.UseVisualStyleBackColor = true;
-            this.btnAnswerTopLeft.Click += new System.EventHandler(this.btnAnswerTopLeft_Click);
             // 
             // tbpAdmin
             // 
@@ -490,7 +468,7 @@
             this.tbpAdmin.Location = new System.Drawing.Point(4, 25);
             this.tbpAdmin.Name = "tbpAdmin";
             this.tbpAdmin.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpAdmin.Size = new System.Drawing.Size(1092, 539);
+            this.tbpAdmin.Size = new System.Drawing.Size(1262, 635);
             this.tbpAdmin.TabIndex = 3;
             this.tbpAdmin.Text = "Admin Panel";
             this.tbpAdmin.UseVisualStyleBackColor = true;
@@ -757,21 +735,122 @@
             this.tmrQuiz.Interval = 1000;
             this.tmrQuiz.Tick += new System.EventHandler(this.tmrQuiz_Tick);
             // 
-            // lblQuestionTime
+            // label20
             // 
-            this.lblQuestionTime.AutoSize = true;
-            this.lblQuestionTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuestionTime.Location = new System.Drawing.Point(92, 15);
-            this.lblQuestionTime.Name = "lblQuestionTime";
-            this.lblQuestionTime.Size = new System.Drawing.Size(18, 20);
-            this.lblQuestionTime.TabIndex = 12;
-            this.lblQuestionTime.Text = "5";
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.Black;
+            this.label20.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label20.Location = new System.Drawing.Point(203, 96);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(22, 21);
+            this.label20.TabIndex = 14;
+            this.label20.Text = "*";
+            // 
+            // lblAsterisk
+            // 
+            this.lblAsterisk.AutoSize = true;
+            this.lblAsterisk.BackColor = System.Drawing.Color.Black;
+            this.lblAsterisk.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAsterisk.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblAsterisk.Location = new System.Drawing.Point(203, 205);
+            this.lblAsterisk.Name = "lblAsterisk";
+            this.lblAsterisk.Size = new System.Drawing.Size(22, 21);
+            this.lblAsterisk.TabIndex = 16;
+            this.lblAsterisk.Text = "*";
+            this.lblAsterisk.Visible = false;
+            // 
+            // lblWrongOrCorrect
+            // 
+            this.lblWrongOrCorrect.AutoSize = true;
+            this.lblWrongOrCorrect.BackColor = System.Drawing.Color.Black;
+            this.lblWrongOrCorrect.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWrongOrCorrect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblWrongOrCorrect.Location = new System.Drawing.Point(229, 205);
+            this.lblWrongOrCorrect.MaximumSize = new System.Drawing.Size(575, 0);
+            this.lblWrongOrCorrect.Name = "lblWrongOrCorrect";
+            this.lblWrongOrCorrect.Size = new System.Drawing.Size(57, 21);
+            this.lblWrongOrCorrect.TabIndex = 15;
+            this.lblWrongOrCorrect.Text = "WRONG";
+            this.lblWrongOrCorrect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblWrongOrCorrect.Visible = false;
+            // 
+            // pbxRalsei
+            // 
+            this.pbxRalsei.Image = global::eindproject.Properties.Resources.undertale_text_box_ralsei_neutral1;
+            this.pbxRalsei.Location = new System.Drawing.Point(6, 38);
+            this.pbxRalsei.Name = "pbxRalsei";
+            this.pbxRalsei.Size = new System.Drawing.Size(840, 277);
+            this.pbxRalsei.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxRalsei.TabIndex = 13;
+            this.pbxRalsei.TabStop = false;
+            // 
+            // btnAnswerBottomRight
+            // 
+            this.btnAnswerBottomRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnAnswerBottomRight.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerBottomRight.BackgroundImage")));
+            this.btnAnswerBottomRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnswerBottomRight.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerBottomRight.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAnswerBottomRight.Location = new System.Drawing.Point(461, 494);
+            this.btnAnswerBottomRight.Name = "btnAnswerBottomRight";
+            this.btnAnswerBottomRight.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerBottomRight.TabIndex = 3;
+            this.btnAnswerBottomRight.Text = "General";
+            this.btnAnswerBottomRight.UseVisualStyleBackColor = false;
+            this.btnAnswerBottomRight.Visible = false;
+            this.btnAnswerBottomRight.Click += new System.EventHandler(this.btnAnswerBottomRight_Click);
+            // 
+            // btnAnswerBottomLeft
+            // 
+            this.btnAnswerBottomLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnAnswerBottomLeft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerBottomLeft.BackgroundImage")));
+            this.btnAnswerBottomLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnswerBottomLeft.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerBottomLeft.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAnswerBottomLeft.Location = new System.Drawing.Point(7, 494);
+            this.btnAnswerBottomLeft.Name = "btnAnswerBottomLeft";
+            this.btnAnswerBottomLeft.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerBottomLeft.TabIndex = 2;
+            this.btnAnswerBottomLeft.Text = "General";
+            this.btnAnswerBottomLeft.UseVisualStyleBackColor = false;
+            this.btnAnswerBottomLeft.Click += new System.EventHandler(this.btnAnswerBottomLeft_Click);
+            // 
+            // btnAnswerTopRight
+            // 
+            this.btnAnswerTopRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnAnswerTopRight.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerTopRight.BackgroundImage")));
+            this.btnAnswerTopRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnswerTopRight.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerTopRight.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAnswerTopRight.Location = new System.Drawing.Point(461, 353);
+            this.btnAnswerTopRight.Name = "btnAnswerTopRight";
+            this.btnAnswerTopRight.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerTopRight.TabIndex = 1;
+            this.btnAnswerTopRight.Text = "Undertale";
+            this.btnAnswerTopRight.UseVisualStyleBackColor = false;
+            this.btnAnswerTopRight.Click += new System.EventHandler(this.btnAnswerTopRight_Click);
+            // 
+            // btnAnswerTopLeft
+            // 
+            this.btnAnswerTopLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnAnswerTopLeft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerTopLeft.BackgroundImage")));
+            this.btnAnswerTopLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnswerTopLeft.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerTopLeft.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAnswerTopLeft.Location = new System.Drawing.Point(7, 353);
+            this.btnAnswerTopLeft.Name = "btnAnswerTopLeft";
+            this.btnAnswerTopLeft.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerTopLeft.TabIndex = 0;
+            this.btnAnswerTopLeft.Text = "Deltarune";
+            this.btnAnswerTopLeft.UseVisualStyleBackColor = false;
+            this.btnAnswerTopLeft.Click += new System.EventHandler(this.btnAnswerTopLeft_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1107, 579);
+            this.ClientSize = new System.Drawing.Size(1172, 688);
             this.Controls.Add(this.tabControl);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -787,6 +866,7 @@
             this.tbpAdmin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccounts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuestions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxRalsei)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -856,6 +936,10 @@
         private System.Windows.Forms.RadioButton rbtnUndertale;
         private System.Windows.Forms.RadioButton rbtnDeltarune;
         private System.Windows.Forms.Label lblQuestionTime;
+        private System.Windows.Forms.PictureBox pbxRalsei;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblAsterisk;
+        private System.Windows.Forms.Label lblWrongOrCorrect;
     }
 }
 
