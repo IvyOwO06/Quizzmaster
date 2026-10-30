@@ -544,7 +544,7 @@ namespace eindproject
             btnAnswerTopLeft.Text = "Deltarune";
             btnAnswerTopRight.Text = "Undertale";
             btnAnswerBottomLeft.Text = "General";
-            lblQuestion.Text = "Choose a Category";
+            lblQuestion.Text = "Welcome lightner, please choose a Category";
             this.BackColor = Color.LightGray;
             tbpQuiz.BackColor = Color.White;
             btnAnswerBottomRight.Visible = false;
