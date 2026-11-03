@@ -232,6 +232,9 @@
     <Content Include="Audio\ding.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Audio\gaster.gaster.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Audio\MEGALOVANIA.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -241,6 +244,7 @@
     <Content Include="Audio\shock.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\undertale_text_box_gaster.png" />
     <None Include="Resources\undertale_text_box_sans_neutral.png" />
     <None Include="Resources\undertale_text_box_sans_wrong.png" />
     <None Include="Resources\undertale_text_box_sans_correct.png" />

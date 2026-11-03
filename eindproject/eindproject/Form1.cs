@@ -41,6 +41,8 @@ namespace eindproject
         int stopwatchTimeAttack = 0;
         int questionsAnsweredCorrectly = 0;
         private Button correctAnswerButton;
+        bool canBeSpecial = true;
+        bool specialQuestion = false;
 
         public Form1()
         {
@@ -504,6 +506,8 @@ namespace eindproject
 
         private void NextQuestion()
         {
+            tmrQuiz.Start();
+            specialQuestion = false;
             stopwatchQuestions = 5;
             currentQuestionIndex++;
 
@@ -522,6 +526,19 @@ namespace eindproject
             lblQuestion.Text = questionList[currentQuestionIndex].GetQuestion();
 
             List<string> answers = questionList[currentQuestionIndex].GetAnswers();
+
+            rng = new Random();
+
+            if (rng.Next(1, 21) == 20 && canBeSpecial)
+            {
+                canBeSpecial = false;
+                specialQuestion = true;
+                audioManager.PlaySound("gaster.gaster.wav");
+                Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_gaster);
+                pbxRalsei.Image = bm;
+                lblWrongOrCorrect.Text = "SPECIAL QUESTION";
+                tmrQuiz.Stop();
+            }
 
             btnAnswerTopLeft.Text = answers[0];
             btnAnswerTopRight.Text = answers[1];
@@ -680,7 +697,14 @@ namespace eindproject
             } 
             else
             {
-                score += 1000;
+                if (specialQuestion)
+                {
+                    score += 5000;
+                }
+                else
+                {
+                    score += 1000;
+                }
                 lblScore.Text = score.ToString();
                 if (category == 2)
                 {
@@ -715,8 +739,15 @@ namespace eindproject
             } 
             else
             {
-                score -= 500;
-                lblScore.Text = score.ToString();
+                if (specialQuestion)
+                {
+                    score -= 2500;
+                } 
+                else
+                {
+                    score -= 500;
+                }
+                lblScore.Text= score.ToString();
                 if (category == 2)
                 {
                     Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_sans_wrong);

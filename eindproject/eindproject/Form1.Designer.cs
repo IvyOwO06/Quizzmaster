@@ -51,12 +51,12 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.tbpQuiz = new System.Windows.Forms.TabPage();
+            this.btnAss = new System.Windows.Forms.Button();
             this.lblAsterisk = new System.Windows.Forms.Label();
             this.lblWrongOrCorrect = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.btnSkip = new System.Windows.Forms.Button();
             this.lblQuestion = new System.Windows.Forms.Label();
-            this.pbxRalsei = new System.Windows.Forms.PictureBox();
             this.lblQuestionTime = new System.Windows.Forms.Label();
             this.lbxHighscore = new System.Windows.Forms.ListBox();
             this.cbxShowHighscore = new System.Windows.Forms.CheckBox();
@@ -64,10 +64,6 @@
             this.lblScore = new System.Windows.Forms.Label();
             this.lblTimer = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.btnAnswerBottomRight = new System.Windows.Forms.Button();
-            this.btnAnswerBottomLeft = new System.Windows.Forms.Button();
-            this.btnAnswerTopRight = new System.Windows.Forms.Button();
-            this.btnAnswerTopLeft = new System.Windows.Forms.Button();
             this.tbpAdmin = new System.Windows.Forms.TabPage();
             this.rbtnUndertale = new System.Windows.Forms.RadioButton();
             this.rbtnDeltarune = new System.Windows.Forms.RadioButton();
@@ -98,15 +94,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tmrQuiz = new System.Windows.Forms.Timer(this.components);
-            this.btnAss = new System.Windows.Forms.Button();
+            this.pbxRalsei = new System.Windows.Forms.PictureBox();
+            this.btnAnswerBottomRight = new System.Windows.Forms.Button();
+            this.btnAnswerBottomLeft = new System.Windows.Forms.Button();
+            this.btnAnswerTopRight = new System.Windows.Forms.Button();
+            this.btnAnswerTopLeft = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tbpLogin.SuspendLayout();
             this.tbpRegister.SuspendLayout();
             this.tbpQuiz.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxRalsei)).BeginInit();
             this.tbpAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccounts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuestions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxRalsei)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -341,6 +341,17 @@
             this.tbpQuiz.Text = "Quiz";
             this.tbpQuiz.UseVisualStyleBackColor = true;
             // 
+            // btnAss
+            // 
+            this.btnAss.Location = new System.Drawing.Point(92, 321);
+            this.btnAss.Name = "btnAss";
+            this.btnAss.Size = new System.Drawing.Size(75, 30);
+            this.btnAss.TabIndex = 17;
+            this.btnAss.Text = "50/50";
+            this.btnAss.UseVisualStyleBackColor = true;
+            this.btnAss.Visible = false;
+            this.btnAss.Click += new System.EventHandler(this.btnAss_Click);
+            // 
             // lblAsterisk
             // 
             this.lblAsterisk.AutoSize = true;
@@ -406,16 +417,6 @@
             this.lblQuestion.TabIndex = 8;
             this.lblQuestion.Text = "Welcome lightner, please choose a category";
             this.lblQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pbxRalsei
-            // 
-            this.pbxRalsei.Image = global::eindproject.Properties.Resources.undertale_text_box_ralsei_neutral1;
-            this.pbxRalsei.Location = new System.Drawing.Point(-4, 38);
-            this.pbxRalsei.Name = "pbxRalsei";
-            this.pbxRalsei.Size = new System.Drawing.Size(856, 277);
-            this.pbxRalsei.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxRalsei.TabIndex = 13;
-            this.pbxRalsei.TabStop = false;
             // 
             // lblQuestionTime
             // 
@@ -487,66 +488,6 @@
             this.label18.Size = new System.Drawing.Size(47, 20);
             this.label18.TabIndex = 4;
             this.label18.Text = "Time:";
-            // 
-            // btnAnswerBottomRight
-            // 
-            this.btnAnswerBottomRight.BackColor = System.Drawing.Color.Transparent;
-            this.btnAnswerBottomRight.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerBottomRight.BackgroundImage")));
-            this.btnAnswerBottomRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAnswerBottomRight.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswerBottomRight.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAnswerBottomRight.Location = new System.Drawing.Point(461, 494);
-            this.btnAnswerBottomRight.Name = "btnAnswerBottomRight";
-            this.btnAnswerBottomRight.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswerBottomRight.TabIndex = 3;
-            this.btnAnswerBottomRight.Text = "Time Attack";
-            this.btnAnswerBottomRight.UseVisualStyleBackColor = false;
-            this.btnAnswerBottomRight.Click += new System.EventHandler(this.btnAnswerBottomRight_Click);
-            // 
-            // btnAnswerBottomLeft
-            // 
-            this.btnAnswerBottomLeft.BackColor = System.Drawing.Color.Transparent;
-            this.btnAnswerBottomLeft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerBottomLeft.BackgroundImage")));
-            this.btnAnswerBottomLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAnswerBottomLeft.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswerBottomLeft.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAnswerBottomLeft.Location = new System.Drawing.Point(7, 494);
-            this.btnAnswerBottomLeft.Name = "btnAnswerBottomLeft";
-            this.btnAnswerBottomLeft.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswerBottomLeft.TabIndex = 2;
-            this.btnAnswerBottomLeft.Text = "General";
-            this.btnAnswerBottomLeft.UseVisualStyleBackColor = false;
-            this.btnAnswerBottomLeft.Click += new System.EventHandler(this.btnAnswerBottomLeft_Click);
-            // 
-            // btnAnswerTopRight
-            // 
-            this.btnAnswerTopRight.BackColor = System.Drawing.Color.Transparent;
-            this.btnAnswerTopRight.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerTopRight.BackgroundImage")));
-            this.btnAnswerTopRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAnswerTopRight.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswerTopRight.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAnswerTopRight.Location = new System.Drawing.Point(461, 353);
-            this.btnAnswerTopRight.Name = "btnAnswerTopRight";
-            this.btnAnswerTopRight.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswerTopRight.TabIndex = 1;
-            this.btnAnswerTopRight.Text = "Undertale";
-            this.btnAnswerTopRight.UseVisualStyleBackColor = false;
-            this.btnAnswerTopRight.Click += new System.EventHandler(this.btnAnswerTopRight_Click);
-            // 
-            // btnAnswerTopLeft
-            // 
-            this.btnAnswerTopLeft.BackColor = System.Drawing.Color.Transparent;
-            this.btnAnswerTopLeft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerTopLeft.BackgroundImage")));
-            this.btnAnswerTopLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAnswerTopLeft.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnswerTopLeft.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAnswerTopLeft.Location = new System.Drawing.Point(7, 353);
-            this.btnAnswerTopLeft.Name = "btnAnswerTopLeft";
-            this.btnAnswerTopLeft.Size = new System.Drawing.Size(385, 135);
-            this.btnAnswerTopLeft.TabIndex = 0;
-            this.btnAnswerTopLeft.Text = "Deltarune";
-            this.btnAnswerTopLeft.UseVisualStyleBackColor = false;
-            this.btnAnswerTopLeft.Click += new System.EventHandler(this.btnAnswerTopLeft_Click);
             // 
             // tbpAdmin
             // 
@@ -848,16 +789,75 @@
             this.tmrQuiz.Interval = 1000;
             this.tmrQuiz.Tick += new System.EventHandler(this.tmrQuiz_Tick);
             // 
-            // btnAss
+            // pbxRalsei
             // 
-            this.btnAss.Location = new System.Drawing.Point(92, 321);
-            this.btnAss.Name = "btnAss";
-            this.btnAss.Size = new System.Drawing.Size(75, 30);
-            this.btnAss.TabIndex = 17;
-            this.btnAss.Text = "50/50";
-            this.btnAss.UseVisualStyleBackColor = true;
-            this.btnAss.Visible = false;
-            this.btnAss.Click += new System.EventHandler(this.btnAss_Click);
+            this.pbxRalsei.Image = global::eindproject.Properties.Resources.undertale_text_box_ralsei_neutral1;
+            this.pbxRalsei.Location = new System.Drawing.Point(-4, 38);
+            this.pbxRalsei.Name = "pbxRalsei";
+            this.pbxRalsei.Size = new System.Drawing.Size(856, 277);
+            this.pbxRalsei.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxRalsei.TabIndex = 13;
+            this.pbxRalsei.TabStop = false;
+            // 
+            // btnAnswerBottomRight
+            // 
+            this.btnAnswerBottomRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnAnswerBottomRight.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerBottomRight.BackgroundImage")));
+            this.btnAnswerBottomRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnswerBottomRight.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerBottomRight.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAnswerBottomRight.Location = new System.Drawing.Point(461, 494);
+            this.btnAnswerBottomRight.Name = "btnAnswerBottomRight";
+            this.btnAnswerBottomRight.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerBottomRight.TabIndex = 3;
+            this.btnAnswerBottomRight.Text = "Time Attack";
+            this.btnAnswerBottomRight.UseVisualStyleBackColor = false;
+            this.btnAnswerBottomRight.Click += new System.EventHandler(this.btnAnswerBottomRight_Click);
+            // 
+            // btnAnswerBottomLeft
+            // 
+            this.btnAnswerBottomLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnAnswerBottomLeft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerBottomLeft.BackgroundImage")));
+            this.btnAnswerBottomLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnswerBottomLeft.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerBottomLeft.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAnswerBottomLeft.Location = new System.Drawing.Point(7, 494);
+            this.btnAnswerBottomLeft.Name = "btnAnswerBottomLeft";
+            this.btnAnswerBottomLeft.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerBottomLeft.TabIndex = 2;
+            this.btnAnswerBottomLeft.Text = "General";
+            this.btnAnswerBottomLeft.UseVisualStyleBackColor = false;
+            this.btnAnswerBottomLeft.Click += new System.EventHandler(this.btnAnswerBottomLeft_Click);
+            // 
+            // btnAnswerTopRight
+            // 
+            this.btnAnswerTopRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnAnswerTopRight.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerTopRight.BackgroundImage")));
+            this.btnAnswerTopRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnswerTopRight.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerTopRight.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAnswerTopRight.Location = new System.Drawing.Point(461, 353);
+            this.btnAnswerTopRight.Name = "btnAnswerTopRight";
+            this.btnAnswerTopRight.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerTopRight.TabIndex = 1;
+            this.btnAnswerTopRight.Text = "Undertale";
+            this.btnAnswerTopRight.UseVisualStyleBackColor = false;
+            this.btnAnswerTopRight.Click += new System.EventHandler(this.btnAnswerTopRight_Click);
+            // 
+            // btnAnswerTopLeft
+            // 
+            this.btnAnswerTopLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnAnswerTopLeft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAnswerTopLeft.BackgroundImage")));
+            this.btnAnswerTopLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnswerTopLeft.Font = new System.Drawing.Font("8bitoperator JVE", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerTopLeft.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAnswerTopLeft.Location = new System.Drawing.Point(7, 353);
+            this.btnAnswerTopLeft.Name = "btnAnswerTopLeft";
+            this.btnAnswerTopLeft.Size = new System.Drawing.Size(385, 135);
+            this.btnAnswerTopLeft.TabIndex = 0;
+            this.btnAnswerTopLeft.Text = "Deltarune";
+            this.btnAnswerTopLeft.UseVisualStyleBackColor = false;
+            this.btnAnswerTopLeft.Click += new System.EventHandler(this.btnAnswerTopLeft_Click);
             // 
             // Form1
             // 
@@ -875,11 +875,11 @@
             this.tbpRegister.PerformLayout();
             this.tbpQuiz.ResumeLayout(false);
             this.tbpQuiz.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxRalsei)).EndInit();
             this.tbpAdmin.ResumeLayout(false);
             this.tbpAdmin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccounts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuestions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxRalsei)).EndInit();
             this.ResumeLayout(false);
 
         }

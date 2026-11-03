@@ -100,6 +100,16 @@ namespace eindproject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap undertale_text_box_gaster {
+            get {
+                object obj = ResourceManager.GetObject("undertale_text_box_gaster", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap undertale_text_box_ralsei_correct {
             get {
                 object obj = ResourceManager.GetObject("undertale_text_box_ralsei_correct", resourceCulture);
