@@ -37,6 +37,10 @@ namespace eindproject
         int stopwatchQuestions = 5;
         int userId = 0;
         bool canChangeTab = true;
+        int category = 1;
+        int stopwatchTimeAttack = 0;
+        int questionsAnsweredCorrectly = 0;
+        private Button correctAnswerButton;
 
         public Form1()
         {
@@ -353,7 +357,8 @@ namespace eindproject
             if (choosingCategory)
             {
                 //deltarune
-                StartGame(1);
+                category = 1;
+                StartGame(category);
             }
             else
             {
@@ -373,7 +378,8 @@ namespace eindproject
             if (choosingCategory)
             {
                 //undertale
-                StartGame(2);
+                category = 2;
+                StartGame(category);
             }
             else
             {
@@ -394,7 +400,8 @@ namespace eindproject
             if (choosingCategory)
             {
                 //general
-                StartGame(3);
+                category = 3;
+                StartGame(category);
             }
             else
             {
@@ -413,15 +420,24 @@ namespace eindproject
 
         private void btnAnswerBottomRight_Click(object sender, EventArgs e)
         {
-            if (btnAnswerBottomRight.Text == questionList[currentQuestionIndex].GetAnswer())
+            if (choosingCategory)
             {
-                Correct();
+                //general
+                category = 4;
+                StartGame(category);
             }
             else
             {
-                Wrong();
+                if (btnAnswerBottomRight.Text == questionList[currentQuestionIndex].GetAnswer())
+                {
+                    Correct();
+                }
+                else
+                {
+                    Wrong();
+                }
+                NextQuestion();
             }
-            NextQuestion();
         }
 
         private void StartGame(int category) //name may change later
@@ -448,14 +464,33 @@ namespace eindproject
             ShuffleQuestions();
 
             NextQuestion();
-            btnAnswerBottomRight.Visible = true;
             btnSkip.Visible = true;
             btnSkip.Enabled = true;
+            btnAss.Visible = true;
             tmrQuiz.Start();
             cbxShowHighscore.Enabled = false;
             canChangeTab = false;
 
-            audioManager.PlayMusic("QUIZ.wav");
+            if (category == 4)
+            {
+                audioManager.PlayMusic("MEGALOVANIA.wav");
+                audioManager.SetMusicSpeed(1.5);
+                Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_sans_neutral);
+                pbxRalsei.Image = bm;
+                lblScoreText.Text = "Correct:";
+                lblScore.Text = "0";
+                lblQuestionTime.Visible = false;
+            }
+            else if (category == 2)
+            {
+                audioManager.PlayMusic("MEGALOVANIA.wav");
+                Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_sans_neutral);
+                pbxRalsei.Image = bm;
+            } 
+            else
+            {
+                audioManager.PlayMusic("QUIZ.wav");
+            }
 
         }
 
@@ -475,7 +510,11 @@ namespace eindproject
         {
             stopwatchQuestions = 5;
             currentQuestionIndex++;
-            lblScore.Text = score.ToString();
+
+            btnAnswerTopLeft.Visible = true;
+            btnAnswerTopRight.Visible = true;
+            btnAnswerBottomLeft.Visible = true;
+            btnAnswerBottomRight.Visible = true;
 
             if (currentQuestionIndex >= questionList.Count)
             {
@@ -493,6 +532,25 @@ namespace eindproject
             btnAnswerTopRight.Text = answers[1];
             btnAnswerBottomLeft.Text = answers[2];
             btnAnswerBottomRight.Text = answers[3];
+
+            string rightAnswer = questionList[currentQuestionIndex].GetAnswer();
+
+            if (btnAnswerTopLeft.Text == rightAnswer)
+            {
+                correctAnswerButton = btnAnswerTopLeft;
+            }
+            else if (btnAnswerTopRight.Text == rightAnswer)
+            {
+                correctAnswerButton = btnAnswerTopRight;
+            }
+            else if (btnAnswerBottomLeft.Text == rightAnswer)
+            {
+                correctAnswerButton = btnAnswerBottomLeft;
+            }
+            else
+            {
+                correctAnswerButton = btnAnswerBottomRight;
+            }
         }
 
         private void btnSkip_Click(object sender, EventArgs e)
@@ -503,29 +561,39 @@ namespace eindproject
 
         private void tmrQuiz_Tick(object sender, EventArgs e)
         {
-            stopwatch--;
-            stopwatchQuestions--;
-            if (stopwatch == 0)
+            if (category == 4)
             {
-                lblTimer.Text = "0";
-                tmrQuiz.Stop();
-                StopQuiz();
-                MessageBox.Show("Time's up!", "Loser");
+                stopwatchTimeAttack++;
+                lblTimer.Text = stopwatchTimeAttack.ToString();
+            }
+            else
+            {
+                stopwatch--;
+                stopwatchQuestions--;
+                if (stopwatch == 0)
+                {
+                    lblTimer.Text = "0";
+                    tmrQuiz.Stop();
+                    StopQuiz();
+                    MessageBox.Show("Time's up!", "Loser");
                 
-                return;
+                    return;
+                }
+                if (stopwatch == 10)
+                {
+                    //this.BackColor = Color.Red;
+                    //tbpQuiz.BackColor = Color.Red;
+                    audioManager.SetMusicSpeed(1.5);
+                }
+                if (stopwatchQuestions == 0)
+                {
+                    NextQuestion();
+                    lblAsterisk.Visible = false;
+                    lblWrongOrCorrect.Visible = false;
+                }
+                lblQuestionTime.Text = stopwatchQuestions.ToString();
+                lblTimer.Text = stopwatch.ToString();
             }
-            if (stopwatch == 10)
-            {
-                this.BackColor = Color.Red;
-                tbpQuiz.BackColor = Color.Red;
-                audioManager.SetMusicSpeed(1.5);
-            }
-            if (stopwatchQuestions == 0)
-            {
-                NextQuestion();
-            }
-            lblQuestionTime.Text = stopwatchQuestions.ToString();
-            lblTimer.Text = stopwatch.ToString();
         }
 
         private void StopQuiz()
@@ -547,8 +615,8 @@ namespace eindproject
             lblQuestion.Text = "Welcome lightner, please choose a Category";
             this.BackColor = Color.LightGray;
             tbpQuiz.BackColor = Color.White;
-            btnAnswerBottomRight.Visible = false;
             btnSkip.Visible = false;
+            btnAss.Visible = false;
             cbxShowHighscore.Enabled = true;
             canChangeTab = true;
         }
@@ -578,24 +646,97 @@ namespace eindproject
 
         private void Correct()
         {
-            score += 1000;
-            Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_ralsei_correct);
-            audioManager.PlaySound("ding.wav");
-            pbxRalsei.Image = bm;
             lblAsterisk.Visible = true;
             lblWrongOrCorrect.Text = "Correct";
             lblWrongOrCorrect.Visible = true;
+
+            if (category == 4)
+            {
+                Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_sans_correct);
+                pbxRalsei.Image = bm;
+                audioManager.PlaySound("correctut.wav");
+                questionsAnsweredCorrectly++;
+                lblScore.Text = questionsAnsweredCorrectly.ToString();
+            } 
+            else
+            {
+                score += 1000;
+                lblScore.Text = score.ToString();
+                if (category == 2)
+                {
+                    Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_sans_correct);
+                    pbxRalsei.Image = bm;
+                    audioManager.PlaySound("correctut.wav");
+                } 
+                else
+                {
+                    Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_ralsei_correct);
+                    pbxRalsei.Image = bm;
+                    audioManager.PlaySound("ding.wav");
+                }
+            }
         }
 
         private void Wrong()
         {
-            score -= 500;
-            Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_ralsei_wrong);
-            audioManager.PlaySound("buzzer.wav");
-            pbxRalsei.Image = bm;
+            
             lblAsterisk.Visible = true;
             lblWrongOrCorrect.Text = "WRONG";
             lblWrongOrCorrect.Visible = true;
+
+            if (category == 4)
+            {
+                Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_sans_wrong);
+                pbxRalsei.Image = bm;
+                audioManager.PlaySound("shock.wav");
+                stopwatchTimeAttack += 5;
+                lblQuestion.Text = stopwatchTimeAttack.ToString();
+            } 
+            else
+            {
+                score -= 500;
+                lblScore.Text = score.ToString();
+                if (category == 2)
+                {
+                    Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_sans_wrong);
+                    pbxRalsei.Image = bm;
+                    audioManager.PlaySound("shock.wav");
+                } 
+                else
+                {
+                    Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_ralsei_wrong);
+                    pbxRalsei.Image = bm;
+                    audioManager.PlaySound("buzzer.wav");
+                }
+            }
+        }
+
+        private void btnAss_Click(object sender, EventArgs e)
+        {
+            if (correctAnswerButton == null)
+                return;
+
+            btnAss.Enabled = false;
+
+            List<Button> wrongButtons = new List<Button>
+            {
+                btnAnswerTopLeft,
+                btnAnswerTopRight,
+                btnAnswerBottomLeft,
+                btnAnswerBottomRight
+            };
+
+            wrongButtons.Remove(correctAnswerButton);
+
+            Random random = new Random();
+
+            for (int i = 0; i < 2; i++)
+            {
+                int index = random.Next(wrongButtons.Count);
+
+                wrongButtons[index].Visible = false;
+                wrongButtons.RemoveAt(index);
+            }
         }
     }
 }

@@ -126,5 +126,35 @@ namespace eindproject.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap undertale_text_box_sans_correct {
+            get {
+                object obj = ResourceManager.GetObject("undertale_text_box_sans_correct", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap undertale_text_box_sans_neutral {
+            get {
+                object obj = ResourceManager.GetObject("undertale_text_box_sans_neutral", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap undertale_text_box_sans_wrong {
+            get {
+                object obj = ResourceManager.GetObject("undertale_text_box_sans_wrong", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
