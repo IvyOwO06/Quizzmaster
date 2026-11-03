@@ -370,7 +370,6 @@ namespace eindproject
                 {
                     Wrong();
                 }
-                NextQuestion();
             }
         }
         private void btnAnswerTopRight_Click(object sender, EventArgs e)
@@ -391,7 +390,6 @@ namespace eindproject
                 {
                     Wrong();
                 }
-                NextQuestion();
             }
         }
 
@@ -413,7 +411,6 @@ namespace eindproject
                 {
                     Wrong();
                 }
-                NextQuestion();
             }
         }
 
@@ -436,7 +433,6 @@ namespace eindproject
                 {
                     Wrong();
                 }
-                NextQuestion();
             }
         }
 
@@ -518,7 +514,6 @@ namespace eindproject
 
             if (currentQuestionIndex >= questionList.Count)
             {
-                tmrQuiz.Stop();
                 StopQuiz();
                 MessageBox.Show("Quiz Finished!");
                 return;
@@ -573,7 +568,6 @@ namespace eindproject
                 if (stopwatch == 0)
                 {
                     lblTimer.Text = "0";
-                    tmrQuiz.Stop();
                     StopQuiz();
                     MessageBox.Show("Time's up!", "Loser");
                 
@@ -598,8 +592,13 @@ namespace eindproject
 
         private void StopQuiz()
         {
+            if (category == 4)
+            {
+                score = stopwatchTimeAttack;
+            }
+            tmrQuiz.Stop();
             databaseHandler = new DatabaseHandler();
-            string query = "INSERT INTO score (score, userId, username) VALUES ('" + score + "' ,'" + userId + "', '" + username + "')";
+            string query = "INSERT INTO score (score, userId, username, category) VALUES ('" + score + "' ,'" + userId + "', '" + username + "', '" + category + "')";
             audioManager.StopMusic();
             databaseHandler.ExecuteQuery(query);
             score = 0;
@@ -612,9 +611,8 @@ namespace eindproject
             btnAnswerTopLeft.Text = "Deltarune";
             btnAnswerTopRight.Text = "Undertale";
             btnAnswerBottomLeft.Text = "General";
+            btnAnswerBottomRight.Text = "Time Attack";
             lblQuestion.Text = "Welcome lightner, please choose a Category";
-            this.BackColor = Color.LightGray;
-            tbpQuiz.BackColor = Color.White;
             btnSkip.Visible = false;
             btnAss.Visible = false;
             cbxShowHighscore.Enabled = true;
@@ -657,6 +655,12 @@ namespace eindproject
                 audioManager.PlaySound("correctut.wav");
                 questionsAnsweredCorrectly++;
                 lblScore.Text = questionsAnsweredCorrectly.ToString();
+                
+                if (questionsAnsweredCorrectly >= 10)
+                {
+                    StopQuiz();
+                    return;
+                }            
             } 
             else
             {
@@ -675,6 +679,7 @@ namespace eindproject
                     audioManager.PlaySound("ding.wav");
                 }
             }
+            NextQuestion();
         }
 
         private void Wrong()
@@ -709,6 +714,7 @@ namespace eindproject
                     audioManager.PlaySound("buzzer.wav");
                 }
             }
+            NextQuestion();
         }
 
         private void btnAss_Click(object sender, EventArgs e)

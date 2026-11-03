@@ -89,7 +89,7 @@ namespace eindproject
         {
             updateListBox.Items.Clear();
             scoreList = new List<Score>();
-            FillDataTable("SELECT * FROM score");
+            FillDataTable("SELECT * FROM score WHERE category <> 4");
             if (dataTable.Rows.Count > 0)
             {
                 for (int i = 0; i < dataTable.Rows.Count; i++)
