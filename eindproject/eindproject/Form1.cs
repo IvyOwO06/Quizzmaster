@@ -592,13 +592,29 @@ namespace eindproject
 
         private void StopQuiz()
         {
+            string query;
+            databaseHandler = new DatabaseHandler();
             if (category == 4)
             {
+                questionsAnsweredCorrectly = 0;
+                query = "SELECT * FROM score WHERE category = 4 ORDER BY score ASC;";
+                databaseHandler.FillDataTable(query);
+                DataTable dataTable = databaseHandler.GetDataTable();
+                int lastScore = Convert.ToInt32(dataTable.Rows[0]["score"]);
+                //score = 50;
                 score = stopwatchTimeAttack;
+                if (score < lastScore)
+                {
+                    MessageBox.Show("Congrats! you were the fastest of all people with a time of " + score + " seconds", "New Highscore!");
+                }
+                else
+                {
+                    MessageBox.Show("You took " + score + " seconds", "Congrats");
+                }
+                stopwatchTimeAttack = 0;
             }
             tmrQuiz.Stop();
-            databaseHandler = new DatabaseHandler();
-            string query = "INSERT INTO score (score, userId, username, category) VALUES ('" + score + "' ,'" + userId + "', '" + username + "', '" + category + "')";
+            query = "INSERT INTO score (score, userId, username, category) VALUES ('" + score + "' ,'" + userId + "', '" + username + "', '" + category + "')";
             audioManager.StopMusic();
             databaseHandler.ExecuteQuery(query);
             score = 0;
