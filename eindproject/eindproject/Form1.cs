@@ -530,7 +530,7 @@ namespace eindproject
 
             rng = new Random();
 
-            if (rng.Next(1, 21) == 20 && canBeSpecial)
+            if ((rng.Next(1, 21) == 20 && canBeSpecial && category != 4) || (currentQuestionIndex == 19 && canBeSpecial))
             {
                 canBeSpecial = false;
                 specialQuestion = true;
