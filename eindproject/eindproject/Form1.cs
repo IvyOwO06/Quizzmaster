@@ -507,6 +507,7 @@ namespace eindproject
         private void NextQuestion()
         {
             tmrQuiz.Start();
+            audioManager.ResumeMusic();
             specialQuestion = false;
             stopwatchQuestions = 5;
             currentQuestionIndex++;
@@ -538,6 +539,7 @@ namespace eindproject
                 pbxRalsei.Image = bm;
                 lblWrongOrCorrect.Text = "SPECIAL QUESTION";
                 tmrQuiz.Stop();
+                audioManager.PauseMusic();
             }
 
             btnAnswerTopLeft.Text = answers[0];

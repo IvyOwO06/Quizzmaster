@@ -23,6 +23,8 @@ namespace eindproject
         private readonly object effectLock = new object();
 
         private bool disposed = false;
+        private bool musicPaused = false;
+        private long pausedMusicPosition = 0;
 
         private string AudioPath(string fileName)
         {
@@ -50,6 +52,9 @@ namespace eindproject
 
             try
             {
+                musicPaused = false;
+                pausedMusicPosition = 0;
+
                 musicReader = new AudioFileReader(path);
 
                 musicSpeedProvider = new SoundTouchWaveStream(musicReader);
@@ -178,6 +183,34 @@ namespace eindproject
 
                 MessageBox.Show("Could not play sound effect:\n" + ex.Message);
             }
+        }
+
+        public void PauseMusic()
+        {
+            if (musicOutput == null || musicReader == null)
+                return;
+
+            if (musicPaused)
+                return;
+
+            pausedMusicPosition = musicReader.Position;
+            musicPaused = true;
+
+            musicOutput.Pause();
+        }
+
+        public void ResumeMusic()
+        {
+            if (musicOutput == null || musicReader == null)
+                return;
+
+            if (!musicPaused)
+                return;
+
+            musicReader.Position = pausedMusicPosition;
+            musicPaused = false;
+
+            musicOutput.Play();
         }
 
         public void Dispose()
