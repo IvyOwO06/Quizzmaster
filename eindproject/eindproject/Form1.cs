@@ -534,6 +534,8 @@ namespace eindproject
             {
                 canBeSpecial = false;
                 specialQuestion = true;
+                //SoundPlayer sp = new SoundPlayer("<filename>.mp3");
+                //sp.Play()
                 audioManager.PlaySound("gaster.gaster.wav");
                 Bitmap bm = new Bitmap(Properties.Resources.undertale_text_box_gaster);
                 pbxRalsei.Image = bm;
